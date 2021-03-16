@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serv": "node index",
-    "start": "mode index"
+    "start": "node index"
   },
   "keywords": [],
   "author": "",
