@@ -1,9 +1,11 @@
 const {model, Schema } = require('mongoose')
+const User = require('./User')
 
 const PostSchema = new Schema({
     body: String,
     username: String,
     createdAt: String,
+    user : User.schema,
     comments: [
         {
             body: String,
@@ -17,10 +19,7 @@ const PostSchema = new Schema({
             createAt: String
         }
     ],
-    user : {
-        type: Schema.Types.ObjectId,
-        ref: 'users'
-    }
+    
 
 })
 
