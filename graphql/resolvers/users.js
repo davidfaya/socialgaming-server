@@ -87,7 +87,7 @@ module.exports = {
                 email, 
                 username,
                 password,
-                image : 'molly.pnp', 
+                image : 'molly.png', 
                 createdAt : new Date().toISOString()
 
             })
@@ -100,6 +100,28 @@ module.exports = {
                 ...res._doc,
                 id: res._id,
                 token
+            }
+        },
+        async updateUser(_, {userUpdate:{username, email, image}}, context) {
+            
+            const user = await User.findOne({username})
+
+            if (!user) {
+                throw new UserInputError('User not found', {
+                    errors: {
+                        username: 'This username does not exist'
+                    }
+                })
+            }
+            
+            user.email = email
+            user.image = image
+
+            const res = await user.save()
+
+            return {
+                ...res._doc,
+                id: res._id
             }
         }
     }

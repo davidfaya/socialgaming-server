@@ -45,6 +45,7 @@ module.exports = {
     },
     Mutation:{
         async createPost(_, {body}, context) {
+            
             const user = userAuth(context)
             
              if (body.trim() === '') 
@@ -56,7 +57,7 @@ module.exports = {
                 username : user.username,
                 createdAt : new Date().toISOString()
             })
-
+            
             const post = await newPost.save()
 
             // context.pubsub.publish('NEW_POST', {
